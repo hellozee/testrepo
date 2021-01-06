@@ -1,0 +1,38 @@
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.0'
+
+name: Create Release
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with:
+          tag_name: tetrate-${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: 
+          draft: false
+          prerelease: false
+
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tag/} | rev | cut -d . -f2- | rev)"
+        id: extract_tag
+    
+      - name: Create Branch
+        uses: peterjgrainger/action-create-branch@v2.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: tetrate-${{ steps.extract_tag.outputs.tag }}

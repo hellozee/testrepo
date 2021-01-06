@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Bump Version
+        description: Tag
         default: v1.0.0
         required: true
   push:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: "refs/tags/${{ github.event.inputs.version }}"
+          ref: "refs/tags/${{ github.event.inputs.tag }}"
 
       - name: Create Release
         id: create_release

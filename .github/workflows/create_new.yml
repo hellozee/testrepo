@@ -27,20 +27,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with:
-          tag_name: tetrate-${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: tetrate-${{ github.event.inputs.tag }}
+          release_name: Release ${{ github.event.inputs.tag }}
           body: 
           draft: false
           prerelease: false
-
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#refs/tags/} | rev | cut -d . -f2- | rev)"
-        id: extract_tag
     
       - name: Create Branch
         uses: peterjgrainger/action-create-branch@v2.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: tetrate-${{ steps.extract_tag.outputs.tag }}
+          branch: tetrate-${{ github.event.inputs.tag }}

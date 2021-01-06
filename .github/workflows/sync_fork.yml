@@ -21,7 +21,7 @@ jobs:
       id: sync
       uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
       with:
-        upstream_repository: istio/istio
+        upstream_repository: beepitybop/testrepo
         upstream_branch: main
         target_branch: main
         git_pull_args: --rebase --tags

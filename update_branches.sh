@@ -1,7 +1,7 @@
 #!/bin/bash
 
 UPSTREAM_REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/istio/istio.git"
-BRANCHES=$(git branch -r | grep -E "release-[0-9]+.[0-9]+$" | cut -d "/" -f 2 | tail -n +14)
+BRANCHES=$(git branch -r | grep -E "release-[0-9]+.[0-9]+$" | cut -d "/" -f 2 )
 
 [[ ! $(git config remote.upstream.url) ]] && git remote add upstream $UPSTREAM_REPO
 

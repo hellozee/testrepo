@@ -1,0 +1,27 @@
+name: tag-check
+
+on:
+  workflow_dispatch:
+    inputs:
+        tag:
+          description: Tag
+          default: 1.0.0
+          required: true
+
+jobs:
+  env:
+    TAG: ${{ github.event.inputs.tag }}
+
+  make_release:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+
+    name: release-builder-run
+
+    steps:
+      - run: echo "::set-env name=TAG::$TAG-tetrate-v0"
+        if: {{ !contains( github.event.inputs.tag, "tetrate" ) }}
+
+      - name: run release builder
+        run: echo "$TAG"

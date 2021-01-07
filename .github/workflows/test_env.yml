@@ -20,8 +20,9 @@ jobs:
     name: release-builder-run
 
     steps:
-    - run: echo "::set-env name=TAG::$TAG-tetrate-v0"
-      if: {{ !contains( github.event.inputs.tag, "tetrate" ) }}
+      - name: p
+        run: echo "::set-env name=TAG::$TAG-tetrate-v0"
+        if: {{ !contains( github.event.inputs.tag, "tetrate" ) }}
 
-    - name: run release builder
-      run: echo "$TAG"
+      - name: run release builder
+        run: echo "$TAG"

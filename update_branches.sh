@@ -1,7 +1,9 @@
 #!/bin/bash
 
 UPSTREAM_REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/istio/istio.git"
-BRANCHES=$(git branch -r | grep -E "origin/release-[0-9]+.[0-9]+$" | cut -d "/" -f 2)
+BRANCHES=$(git branch -r | grep -E "release-[0-9]+.[0-9]+$" | cut -d "/" -f 2)
+
+echo $BRANCHES
 
 for branch in $BRANCHES; do
     git checkout $branch

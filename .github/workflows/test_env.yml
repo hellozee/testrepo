@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: p
-        run: echo "{TAG}={$TAG-tetrate-v0}" >> $GITHUB_ENV
+        run: echo "TAG=$TAG-tetrate-v0" >> $GITHUB_ENV
         if: {{ !contains( github.event.inputs.tag, "tetrate" ) }}
 
       - name: run release builder

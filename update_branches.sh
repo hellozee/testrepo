@@ -15,6 +15,7 @@ for branch in $BRANCHES; do
 done
 
 for branch in $BRANCHES; do
+    git checkout $branch
     git checkout -b tetrate-$branch
     git rebase $branch
     git rebase hellozee

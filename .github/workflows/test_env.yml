@@ -13,9 +13,7 @@ jobs:
     TAG: ${{ github.event.inputs.tag }}
 
   make_release:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
+    runs-on: [ ubuntu-latest ]
 
     name: release-builder-run
 

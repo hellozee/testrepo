@@ -17,7 +17,7 @@ done
 for branch in $BRANCHES; do
     git checkout $branch
     git checkout -b tetrate-$branch
-    git rebase $branch
+    git merge $branch
     git rebase hellozee
     git push origin tetrate-$branch --tags
     echo "Update tetrate-$branch"

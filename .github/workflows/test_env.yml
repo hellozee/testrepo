@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: p
-        run: echo "::set-env name=TAG::$(echo $TAG-tetrate-v0)"
+        run: echo "::set-env name=DAY_OF_WEEK::$( date +%a )"
         if: {{ !contains( github.event.inputs.tag, "tetrate" ) }}
 
       - name: run release builder

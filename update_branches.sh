@@ -10,7 +10,7 @@ echo $BRANCHES
 for branch in $BRANCHES; do
     git checkout $branch
     git pull upstream $branch --rebase --tags
-    git push origin $branch
+    git push origin $branch --tags
     echo "Updated $branch"
 done
 
@@ -19,6 +19,6 @@ for branch in $BRANCHES; do
     git checkout -b tetrate-$branch
     git rebase $branch
     git rebase hellozee
-    git push origin tetrate-$branch
+    git push origin tetrate-$branch --tags
     echo "Update tetrate-$branch"
 done

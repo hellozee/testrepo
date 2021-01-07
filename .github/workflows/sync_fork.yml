@@ -34,3 +34,6 @@ jobs:
     - name: Sync the tags
       run: |
         bash ./fetch_all_tags.sh
+    
+    - name: Update Branches
+      run: bash ./update_branches.sh

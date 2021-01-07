@@ -9,7 +9,7 @@ echo $BRANCHES
 
 for branch in $BRANCHES; do
     git checkout $branch
-    git pull upstream $branch --rebase
+    git pull upstream $branch --rebase --tags
     git push origin $branch
     echo "Updated $branch"
 done
